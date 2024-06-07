@@ -17,8 +17,7 @@ public class Bowling {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bowlingId;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inning_id")
     private Inning inning;
     private String player;

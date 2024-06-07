@@ -1,12 +1,11 @@
 package com.befaruq.model.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
@@ -32,6 +31,10 @@ public class Match {
     @OneToMany(mappedBy = "match", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Inning> innings;
 
+    /**
+     * The @JsonManagedReference in the <Parent> entity and the @JsonBackReference in the relevant <Child> entity will 
+     * avoid circular calls by jackson by only considering calling reference from the former for serialization.
+     */
     @JsonManagedReference
     public List<Inning> getInnings() {
         return innings;

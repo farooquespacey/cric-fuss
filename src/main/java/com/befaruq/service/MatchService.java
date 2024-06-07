@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class MatchService {
@@ -64,5 +62,12 @@ public class MatchService {
         return outcome.winner + " won by " +
                 ((outcome.by.runs != 0) ? outcome.by.runs + " runs" : outcome.by.wickets + " wickets");
     }
+
+    // Bad design to grab everything from DB and performing filters, instead ask DB to do so.
+//    public List<Batting> getTopNScorer(Long inningId, int topNum) {
+//        Match m = matchRepository.findById(matchId).orElseThrow(() -> new RuntimeException("matchId not found"));
+//        Inning mi = m.getInnings().stream().filter(i -> Objects.equals(i.getInningId(), inningId)).findFirst().orElseThrow(() -> new RuntimeException("inningId not found"));
+//        return mi.getBattingList().stream().sorted(Comparator.comparingInt(Batting::getRuns).reversed()).toList();
+//    }
 
 }

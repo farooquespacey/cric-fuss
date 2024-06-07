@@ -20,8 +20,13 @@ public class Inning {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long inningId;
-
-    @ManyToOne
+    /**
+     * FetchType is important here, so that Hibernate will be smart enough to discard the unnecessary join with the 
+     * Match entity while performing calls like InningRepository.findById().
+     * Note here that, even without this attribute, jackson would still not call .getMatch() API as its part 
+     * of @JsonBackReference but that's only a secondary protection whereas hibernates the primary one.
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "match_id")
     private Match match;
     

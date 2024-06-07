@@ -20,7 +20,7 @@ public class ScorecardController {
     public ResponseEntity<?> findById(@PathVariable Long id) {
         try {
             Scorecard scorecard = scorecardService.getScorecard(id);
-            return new ResponseEntity<>(scorecard, HttpStatus.CREATED);
+            return new ResponseEntity<>(scorecard, HttpStatus.OK);
         } catch (Exception e) {
             BadResponse br = new BadResponse("failure", e.getMessage());
             return new ResponseEntity<>(br, HttpStatus.BAD_REQUEST);

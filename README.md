@@ -25,6 +25,13 @@ To install this example application, run the following commands:
    
 Open `src/main/resources/application.properties` to see details
 
+## Usages
+1. POST `<host>:<port>/cric-info/addMatchInfo`
+2. GET `<host>:<port>/cric-info/getMatchInfo/<matchId>`
+3. GET `<host>:<port>/cric-info/stats/getTopScorer?inningId=<inningId>&num=<topLimit>`
+4. GET `<host>:<port>/cric-info/stats/getTopBowler?inningId=<inningId>&num=<topLimit>`
+5. GET `<host>:<port>/cric-info/stats/getInningData/<inningId>?include_child=<true/false>`
+
 ## Limitations/Variations from the original design
 - UI is not complete but didn't want to delay sending the solution that I have so far which works well backend-wise.
 - Had to use Java-17 instead of Java-11 since the latest SpringBoot requires 17 version.
